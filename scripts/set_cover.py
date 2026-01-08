@@ -4,6 +4,7 @@ from notion_client import Client
 # --- 配置区 ---
 NOTION_TOKEN = os.environ.get("NOTION_TOKEN")
 POST_DB_ID = os.environ.get("POST_DB_ID")
+print("POST_DB_ID =", POST_DB_ID)
 
 # 只有没封面的文章才处理
 FORCE_UPDATE = False 
