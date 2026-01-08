@@ -1,0 +1,8 @@
+# (可选修改) 在 set_cover.py 的 else 部分：
+else:
+    # 如果正文没图，给个随机风景图
+    random_url = "https://source.unsplash.com/random/1200x600?nature,water"
+    notion.pages.update(
+        page_id=page_id,
+        cover={"type": "external", "external": {"url": random_url}}
+    )
