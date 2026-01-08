@@ -4,21 +4,10 @@ from notion_client import Client
 # --- 配置区 ---
 NOTION_TOKEN = os.environ.get("NOTION_TOKEN")
 POST_DB_ID = os.environ.get("POST_DB_ID")
-print("POST_DB_ID =", POST_DB_ID)
 
 # 只有没封面的文章才处理
 FORCE_UPDATE = False 
-
 notion = Client(auth=NOTION_TOKEN)
-try:
-    db = notion.request(
-        path=f"databases/{POST_DB_ID}",
-        method="GET"
-    )
-    print("✅ 这是数据库，API 可访问")
-except Exception as e:
-    print("❌ API 不认这是数据库：", e)
-    return
 
 def get_first_image_from_page(page_id):
     """
