@@ -79,8 +79,11 @@ def set_cover():
                 updated_count += 1
                 print(" -> 成功！")
             else:
-                print(" -> 正文无图片，跳过。")
-
+                random_url = "https://source.unsplash.com/random/1200x600?nature,water"
+                notion.pages.update(
+                page_id=page_id,
+                cover={"type": "external", "external": {"url": random_url}}
+    )
         has_more = response['has_more']
         start_cursor = response['next_cursor']
 
