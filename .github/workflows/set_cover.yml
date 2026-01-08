@@ -27,7 +27,7 @@ jobs:
       #     POST_DB_ID: ${{ secrets.POST_DB_ID }}
       #   run: python scripts/set_cover.py
         
-      -  name: Run Search Script
+      - name: Run Search Script
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           # 此时不需要 POST_DB_ID，因为我们要去找它
