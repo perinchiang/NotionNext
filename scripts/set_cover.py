@@ -10,6 +10,15 @@ print("POST_DB_ID =", POST_DB_ID)
 FORCE_UPDATE = False 
 
 notion = Client(auth=NOTION_TOKEN)
+try:
+    db = notion.request(
+        path=f"databases/{POST_DB_ID}",
+        method="GET"
+    )
+    print("✅ 这是数据库，API 可访问")
+except Exception as e:
+    print("❌ API 不认这是数据库：", e)
+    return
 
 def get_first_image_from_page(page_id):
     """
