@@ -339,6 +339,19 @@ const Style = () => (
       background: var(--pathos-table-hover);
     }
 
+    #theme-pathos .pathos-table td:first-child {
+      position: relative;
+    }
+
+    #theme-pathos .pathos-table .pathos-row-link::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -40%;
+      bottom: 0;
+      left: 0;
+    }
+
     #theme-pathos .pathos-table a,
     #theme-pathos .pathos-content-link {
       color: var(--pathos-link);

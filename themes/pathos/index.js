@@ -46,7 +46,7 @@ const PostTable = ({ posts = [] }) => (
         {posts.map(post => (
           <tr key={post.id || post.slug}>
             <td>
-              <SmartLink href={getPostHref(post)}>{post.title}</SmartLink>
+              <SmartLink href={getPostHref(post)} className='pathos-row-link'>{post.title}</SmartLink>
             </td>
             <td className='pathos-muted whitespace-normal'>
               {formatPostDate(post) || '-'}
