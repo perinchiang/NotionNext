@@ -18,13 +18,15 @@
 
 Verified states:
 
-- Digital Garden structure: fixed flat navbar, 700px reading column, 180/190px opening rhythm, greeting, callouts, dividers, compact latest-post table, and mobile wrapping.
+- Digital Garden structure: fixed 55.88px flat navbar, 700px reading column, 198px greeting baseline, source-style callouts, 32px dividers, compact latest-post table, and mobile wrapping.
 - Obsidian Nord dark palette: canvas `#2e3440`, navbar `#3b4252`, text `#eceff4`, link `#d08770`, plus source table striping and heading hierarchy.
-- Light palette: the source Nord light surfaces with contrast-safe yellow, green, purple, and link foreground adaptations.
+- Source typography: system UI fallback stack; greeting `29.124px / 34.9488px / 700`; section title `26.316px / 31.5792px / 600`; callout and table body `16px`; table header `21.6px / 600`.
+- Source geometry: quote `124.8px`, information callout `128px`, contact callout `104px`; table columns `78.7% / 21.3%` and source-equivalent row heights.
+- Light palette: Nord light surfaces with contrast-safe yellow, green, purple, and link foreground adaptations.
 - Theme toggle works on home and article pages without layout shift.
-- Mobile home has no horizontal overflow; the greeting emoji aligns with the first title line; the table keeps 32px side margins.
+- Mobile home at `390 × 844` has no horizontal overflow; the greeting emoji stays inline with the first title line; the table keeps 32px side margins and the same source typography.
 - Notion article text inherits the active palette. Dark H2/H3 resolve to `rgb(235, 203, 139)` and `rgb(163, 190, 140)`; light H2/H3 resolve to `rgb(116, 90, 32)` and `rgb(84, 113, 63)`.
-- Browser console error count: zero.
+- Browser console error count: zero in both color modes.
 
 ## Remaining deployment check
 

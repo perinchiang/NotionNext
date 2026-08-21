@@ -16,24 +16,25 @@ const getPostHref = post => post?.href || `/${post?.slug || post?.id || ''}`
 const getPostDate = post =>
   post?.publishDay || post?.date?.start_date || post?.date?.startDate || ''
 
+const formatPostDate = post => {
+  const value = getPostDate(post)
+  const match = String(value).match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/)
+  if (!match) return value
+  return `${match[1]}-${match[2].padStart(2, '0')}-${match[3].padStart(2, '0')}`
+}
+
 const SectionTitle = ({ icon, id, children }) => (
-  <h2
-    id={id}
-    className='pathos-accent-gold mb-5 flex items-center gap-3 text-[1.65rem] font-semibold tracking-tight'
-  >
-    <span aria-hidden='true' className='w-6 text-center text-[1.15rem]'>
-      {icon}
-    </span>
-    <span>{children}</span>
+  <h2 id={id} className='pathos-section-title pathos-accent-gold'>
+    <span aria-hidden='true'>{icon}</span> {children}
   </h2>
 )
 
 const PostTable = ({ posts = [] }) => (
-  <div className='overflow-hidden rounded-[4px]'>
+  <div className='pathos-table-wrap'>
     <table className='pathos-table'>
       <colgroup>
-        <col className='w-[72%]' />
-        <col className='w-[28%]' />
+        <col className='pathos-col-title' style={{ width: '78.7%' }} />
+        <col className='pathos-col-date' style={{ width: '21.3%' }} />
       </colgroup>
       <thead>
         <tr>
@@ -48,7 +49,7 @@ const PostTable = ({ posts = [] }) => (
               <SmartLink href={getPostHref(post)}>{post.title}</SmartLink>
             </td>
             <td className='pathos-muted whitespace-normal'>
-              {getPostDate(post) || '-'}
+              {formatPostDate(post) || '-'}
             </td>
           </tr>
         ))}
@@ -59,11 +60,8 @@ const PostTable = ({ posts = [] }) => (
 
 const Header = () => (
   <header className='pathos-header fixed left-0 right-0 top-0 z-40 h-12 w-full sm:h-[55px]'>
-    <div className='flex h-full w-full items-center justify-between px-12'>
-      <SmartLink
-        href='/'
-        className='pathos-brand text-[1rem] font-semibold tracking-wide no-underline'
-      >
+    <div className='pathos-navbar-inner flex h-full w-full items-center justify-between'>
+      <SmartLink href='/' className='pathos-brand no-underline'>
         {CONFIG.PATHOS_BRAND}
       </SmartLink>
       <DarkModeButton
@@ -73,20 +71,6 @@ const Header = () => (
     </div>
   </header>
 )
-
-const Footer = () => {
-  const since = Number.parseInt(siteConfig('SINCE'))
-  const currentYear = new Date().getFullYear()
-  const years =
-    since && since < currentYear ? `${since}–${currentYear}` : currentYear
-  return (
-    <footer className='mx-auto w-full max-w-[700px] px-8 pb-8 pt-4 text-sm sm:px-0'>
-      <div className='pathos-divider pathos-muted border-t pt-5'>
-        © {years} {CONFIG.PATHOS_BRAND}
-      </div>
-    </footer>
-  )
-}
 
 const LayoutBase = ({ children, post }) => {
   const fullWidth = post?.fullWidth ?? false
@@ -102,7 +86,6 @@ const LayoutBase = ({ children, post }) => {
       >
         {children}
       </main>
-      <Footer />
     </div>
   )
 }
@@ -110,71 +93,64 @@ const LayoutBase = ({ children, post }) => {
 const LayoutIndex = props => {
   const { posts = [] } = props
   return (
-    <div className='pb-12 pt-[180px] sm:pt-[190px]'>
+    <div className='pathos-home'>
       <section aria-labelledby='pathos-hi'>
-        <h1
-          id='pathos-hi'
-          className='pathos-accent-red mb-4 flex items-start gap-3 text-[1.62rem] font-semibold tracking-tight sm:text-[1.82rem]'
-        >
-          <span
-            aria-hidden='true'
-            className='mt-1 w-6 text-center text-[1.2rem]'
-          >
-            👋
-          </span>
-          <span className='max-w-[205px] sm:max-w-none'>
-            {CONFIG.PATHOS_HOME_GREETING}
-          </span>
+        <h1 id='pathos-hi' className='pathos-home-title pathos-accent-red'>
+          <span aria-hidden='true'>👋</span> {CONFIG.PATHOS_HOME_GREETING}
         </h1>
         <aside className='pathos-callout' aria-label='Quote'>
           <div className='pathos-callout-title'>Quote</div>
           <div className='pathos-callout-content'>
-            <p>{CONFIG.PATHOS_QUOTE_LEAD}</p>
-            <p>{CONFIG.PATHOS_QUOTE_BODY}</p>
+            <p>
+              {CONFIG.PATHOS_QUOTE_LEAD}
+              <br />
+              {CONFIG.PATHOS_QUOTE_BODY}
+            </p>
           </div>
         </aside>
       </section>
 
-      <section
-        className='pathos-divider mt-8 border-t pt-7'
-        aria-labelledby='latest-posts'
-      >
+      <hr className='pathos-hr' />
+
+      <section aria-labelledby='latest-posts'>
         <SectionTitle id='latest-posts' icon='✍️'>
           最新文章
         </SectionTitle>
         <PostTable posts={posts} />
       </section>
 
-      <section
-        className='pathos-divider mt-8 border-t pt-7'
-        aria-labelledby='about-pathos'
-      >
+      <hr className='pathos-hr' />
+
+      <section aria-labelledby='about-pathos'>
         <aside className='pathos-callout' data-tone='info'>
-          <h2 id='about-pathos' className='pathos-callout-title text-[0.92rem]'>
-            <span aria-hidden='true'>ⓘ</span>
-            <span>关于这个站点</span>
+          <h2 id='about-pathos' className='pathos-callout-title'>
+            关于这个站点
           </h2>
-          <div className='pathos-callout-content'>{CONFIG.PATHOS_ABOUT}</div>
+          <div className='pathos-callout-content'>
+            <p>
+              {CONFIG.PATHOS_ABOUT_LEAD}
+              <br />
+              {CONFIG.PATHOS_ABOUT_BODY}
+            </p>
+          </div>
         </aside>
       </section>
 
-      <section className='mt-4' aria-labelledby='contact-pathos'>
+      <section aria-labelledby='contact-pathos'>
         <aside className='pathos-callout' data-tone='tip'>
-          <h2
-            id='contact-pathos'
-            className='pathos-callout-title text-[0.92rem]'
-          >
-            <span aria-hidden='true'>♨</span>
-            <span>联系我</span>
+          <h2 id='contact-pathos' className='pathos-callout-title'>
+            联系我
           </h2>
           <div className='pathos-callout-content'>
-            有想聊的可以邮箱找我：
-            <a
-              className='pathos-content-link'
-              href={`mailto:${CONFIG.PATHOS_EMAIL}`}
-            >
-              {CONFIG.PATHOS_EMAIL}
-            </a>
+            <p>
+              有想聊的可以邮箱找我：
+              <a
+                className='pathos-content-link'
+                href={`mailto:${CONFIG.PATHOS_EMAIL}`}
+              >
+                {CONFIG.PATHOS_EMAIL}
+              </a>
+            </p>
           </div>
         </aside>
       </section>
@@ -183,7 +159,7 @@ const LayoutIndex = props => {
 }
 
 const ListHeader = ({ title, icon = '☰' }) => (
-  <div className='pb-5 pt-[180px] sm:pt-[190px]'>
+  <div className='pathos-page-lead'>
     <SectionTitle icon={icon}>{title}</SectionTitle>
   </div>
 )
@@ -246,7 +222,7 @@ const LayoutSlug = props => {
   if (!post) return null
 
   return (
-    <article className='pb-16 pt-[180px] sm:pt-[190px]'>
+    <article className='pathos-article pb-16'>
       <header className='pathos-divider mb-10 border-b pb-7'>
         <h1 className='pathos-accent-red text-3xl font-semibold leading-tight tracking-tight sm:text-4xl'>
           {post.title}

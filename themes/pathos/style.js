@@ -12,7 +12,7 @@ const Style = () => (
     html,
     body,
     #theme-pathos {
-      background: #ffffff;
+      background: #eceff4;
     }
 
     #theme-pathos {
@@ -33,14 +33,14 @@ const Style = () => (
       --nord14: #a3be8c;
       --nord15: #b48ead;
 
-      --pathos-canvas: #ffffff;
-      --pathos-header: var(--nord6);
-      --pathos-panel: var(--nord6);
+      --pathos-canvas: var(--nord6);
+      --pathos-header: var(--nord5);
+      --pathos-panel: var(--nord4);
       --pathos-panel-alt: var(--nord5);
-      --pathos-text: var(--nord2);
-      --pathos-muted: var(--nord1);
-      --pathos-faint: var(--nord0);
-      --pathos-border: var(--nord5);
+      --pathos-text: var(--nord0);
+      --pathos-muted: var(--nord2);
+      --pathos-faint: var(--nord3);
+      --pathos-border: var(--nord4);
       --pathos-heading-red: var(--nord11);
       --pathos-heading-yellow: #745a20;
       --pathos-heading-green: #54713f;
@@ -49,20 +49,30 @@ const Style = () => (
       --pathos-link-hover: var(--nord10);
       --pathos-code: var(--nord8);
       --pathos-code-background: var(--nord6);
-      --pathos-table-head: rgba(236, 239, 244, 0.2);
-      --pathos-table-even: rgba(236, 239, 244, 0.4);
-      --pathos-table-odd: rgba(236, 239, 244, 0.8);
+      --pathos-table-head: var(--nord4);
+      --pathos-table-even: var(--nord5);
+      --pathos-table-odd: var(--nord6);
       --pathos-table-hover: var(--nord9);
       min-height: 100vh;
       color: var(--pathos-text) !important;
       background: var(--pathos-canvas);
       font-family:
-        -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
-        'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+        ui-sans-serif,
+        -apple-system,
+        BlinkMacSystemFont,
+        system-ui,
+        'Segoe UI',
+        Roboto,
+        Inter,
+        'Apple Color Emoji',
+        'Segoe UI Emoji',
+        'Segoe UI Symbol',
+        sans-serif;
       font-size: 18px;
       line-height: 1.5;
     }
 
+    .dark html,
     .dark body,
     .dark #theme-pathos {
       background: var(--nord0);
@@ -101,10 +111,22 @@ const Style = () => (
     }
 
     #theme-pathos .pathos-header {
+      height: 55.8839px !important;
       background: var(--pathos-header);
     }
 
-    #theme-pathos .pathos-brand,
+    #theme-pathos .pathos-navbar-inner {
+      padding: 0 32px;
+    }
+
+    #theme-pathos .pathos-brand {
+      color: var(--pathos-link);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: normal;
+    }
+
     #theme-pathos .pathos-accent-red {
       color: var(--pathos-heading-red);
     }
@@ -139,58 +161,134 @@ const Style = () => (
       border-color: var(--pathos-border);
     }
 
+    #theme-pathos .pathos-home {
+      padding: 182px 0 60px;
+    }
+
+    #theme-pathos .pathos-page-lead,
+    #theme-pathos .pathos-article {
+      padding-top: 182px;
+    }
+
+    #theme-pathos .pathos-page-lead {
+      padding-bottom: 20px;
+    }
+
+    #theme-pathos .pathos-home-title {
+      margin: 16px 0;
+      font-size: 29.124px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+    }
+
+    #theme-pathos .pathos-section-title {
+      margin: 16px 0;
+      font-size: 26.316px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.011em;
+    }
+
+    #theme-pathos .pathos-hr {
+      height: 2px;
+      margin: 32px 0;
+      border: 0;
+      border-top: 2px solid var(--pathos-border);
+    }
+
     #theme-pathos .pathos-callout {
       --pathos-callout-color: 158, 158, 158;
       overflow: hidden;
-      margin: 1em 0;
+      margin: 16px 0;
       padding: 12px 12px 12px 24px;
       border: 0;
       border-radius: 4px;
       background: rgba(var(--pathos-callout-color), 0.1);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
     }
 
     #theme-pathos .pathos-callout[data-tone='info'] {
-      --pathos-callout-color: 0, 184, 212;
+      --pathos-callout-color: 94, 129, 172;
     }
 
     #theme-pathos .pathos-callout[data-tone='tip'] {
-      --pathos-callout-color: 0, 191, 165;
+      --pathos-callout-color: 136, 192, 208;
     }
 
     #theme-pathos .pathos-callout-title {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
+      margin: 0;
       color: rgb(var(--pathos-callout-color));
-      font-size: 0.92rem;
+      font-size: 16px;
       font-weight: 600;
       line-height: 1.3;
     }
 
-    #theme-pathos .pathos-callout-content {
-      margin-top: 0.7rem;
+    #theme-pathos .pathos-callout[data-tone] .pathos-callout-title {
+      font-weight: 400;
+      line-height: 24px;
     }
 
-    #theme-pathos .pathos-callout-content p + p {
-      margin-top: 0.2rem;
+    #theme-pathos .pathos-callout-content {
+      margin: 0;
+    }
+
+    #theme-pathos .pathos-callout-content p {
+      margin: 16px 0;
     }
 
     #theme-pathos .pathos-table {
       width: 100%;
       overflow: hidden;
+      margin: 16px 0;
       border: 1px solid var(--pathos-panel);
       border-collapse: collapse;
       table-layout: fixed;
     }
 
+    #theme-pathos .pathos-table-wrap {
+      display: flow-root;
+    }
+
+    #theme-pathos .pathos-col-title {
+      width: 78.7%;
+    }
+
+    #theme-pathos .pathos-col-date {
+      width: 21.3%;
+    }
+
+    #theme-pathos .pathos-table th:first-child,
+    #theme-pathos .pathos-table td:first-child {
+      width: 78.7%;
+    }
+
+    #theme-pathos .pathos-table th:last-child,
+    #theme-pathos .pathos-table td:last-child {
+      width: 21.3%;
+    }
+
     #theme-pathos .pathos-table th,
     #theme-pathos .pathos-table td {
-      padding: 0.27rem 0.48rem;
-      line-height: 1.25;
+      padding: 4px 8px;
       vertical-align: top;
       border-right: 1px solid var(--pathos-panel);
       border-bottom: 1px solid var(--pathos-panel);
       overflow-wrap: anywhere;
+    }
+
+    #theme-pathos .pathos-table th {
+      font-size: 21.6px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    #theme-pathos .pathos-table td,
+    #theme-pathos .pathos-table td a {
+      font-size: 16px;
+      line-height: 1.3;
     }
 
     #theme-pathos .pathos-table th:last-child,
@@ -361,14 +459,6 @@ const Style = () => (
       background: var(--pathos-table-hover);
     }
 
-    @media (max-width: 640px) {
-      #theme-pathos .pathos-table th,
-      #theme-pathos .pathos-table td {
-        padding: 0.35rem 0.42rem;
-        font-size: 0.84rem;
-      }
-    }
-
     @media (prefers-reduced-motion: reduce) {
       #theme-pathos *,
       #theme-pathos *::before,
@@ -380,6 +470,15 @@ const Style = () => (
     }
 
     ${themeConsoleStyle('pathos', CONFIG)}
+
+    #theme-pathos {
+      color: var(--pathos-text);
+      background: var(--pathos-canvas);
+    }
+
+    .dark #theme-pathos {
+      background: var(--pathos-canvas);
+    }
   `}</style>
 )
 
