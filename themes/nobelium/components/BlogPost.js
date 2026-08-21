@@ -11,21 +11,21 @@ const BlogPost = ({ post }) => {
 
   return (
     <SmartLink href={post?.href}>
-      <article key={post.id} className='mb-6 md:mb-8'>
+      <article key={post.id} className='group mb-8 border-b border-[#e8e4dc] pb-8 dark:border-[#34332f]'>
         <header className='flex flex-col justify-between md:flex-row md:items-baseline'>
-          <h2 className='text-lg md:text-xl font-medium mb-2 cursor-pointer text-black dark:text-gray-100'>
+          <h2 className='mb-2 cursor-pointer text-xl font-medium leading-snug text-[#25231f] transition-colors duration-200 group-hover:text-[#756b5b] dark:text-[#f0ede7] dark:group-hover:text-[#c9c2b7] md:text-2xl'>
             {siteConfig('POST_TITLE_ICON') && (
               <NotionIcon icon={post.pageIcon} />
             )}
             {post.title}
           </h2>
-          <time className='flex-shrink-0 text-gray-600 dark:text-gray-400'>
+          <time className='flex-shrink-0 font-mono text-xs tracking-wide text-[#8b857c] dark:text-[#9f9a92]'>
             {post?.publishDay}
           </time>
         </header>
         <main>
           {!showPreview && (
-            <p className='hidden md:block leading-8 text-gray-700 dark:text-gray-300'>
+            <p className='hidden max-w-[65ch] text-[0.98rem] leading-7 text-[#68625a] dark:text-[#b4afa7] md:block'>
               {post.summary}
             </p>
           )}
