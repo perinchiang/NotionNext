@@ -3,11 +3,6 @@
  * 如果需要在Notion中添加自定义字段，可以修改此文件
  * 此文件内容可以通过环境变量覆盖，但是不支持用NOTION_CONFIG覆盖
  */
-console.log('[NotionEnvCheck]', {
-  hasTokenV2: Boolean(process.env.NOTION_TOKEN_V2),
-  hasPageId: Boolean(process.env.NOTION_PAGE_ID)
-})
-
 module.exports = {
   // Notion数据库索引，取notion的第几个视图作为站点数据和排序依据
   NOTION_INDEX: process.env.NEXT_PUBLIC_NOTION_INDEX || 0,  // 默认取Notion数据库中的第1个视图
