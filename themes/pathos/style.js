@@ -555,6 +555,12 @@ const Style = () => (
     #theme-pathos #article-wrapper .code-toolbar {
       width: 100%;
       margin: 0;
+      border: 0 !important;
+      border-radius: 4px !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
     }
 
     #theme-pathos #article-wrapper .pre-mac,
