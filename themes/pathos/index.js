@@ -9,6 +9,8 @@ import { ArticleLock } from '../nobelium/components/ArticleLock'
 import CONFIG from './config'
 import { Style } from './style'
 
+const pathosConfig = key => siteConfig(key, CONFIG[key], CONFIG)
+
 const getPostHref = post => post?.href || `/${post?.slug || post?.id || ''}`
 
 const getPostDate = post =>
@@ -60,7 +62,7 @@ const Header = () => (
   <header className='pathos-header fixed left-0 right-0 top-0 z-40 h-12 w-full sm:h-[55px]'>
     <div className='pathos-navbar-inner flex h-full w-full items-center justify-between'>
       <SmartLink href='/' className='pathos-brand no-underline'>
-        {CONFIG.PATHOS_BRAND}
+        {pathosConfig('PATHOS_BRAND')}
       </SmartLink>
       <DarkModeButton
         className='pathos-mode-button'
@@ -90,19 +92,24 @@ const LayoutBase = ({ children, post }) => {
 
 const LayoutIndex = props => {
   const { posts = [] } = props
+  const email = pathosConfig('PATHOS_EMAIL')
+
   return (
     <div className='pathos-home'>
       <section aria-labelledby='pathos-hi'>
         <h1 id='pathos-hi' className='pathos-home-title pathos-accent-red'>
-          <span aria-hidden='true'>👋</span> {CONFIG.PATHOS_HOME_GREETING}
+          <span aria-hidden='true'>👋</span>{' '}
+          {pathosConfig('PATHOS_HOME_GREETING')}
         </h1>
         <aside className='pathos-callout' aria-label='Quote'>
-          <div className='pathos-callout-title'>Quote</div>
+          <div className='pathos-callout-title'>
+            {pathosConfig('PATHOS_QUOTE_TITLE')}
+          </div>
           <div className='pathos-callout-content'>
             <p>
-              {CONFIG.PATHOS_QUOTE_LEAD}
+              {pathosConfig('PATHOS_QUOTE_LEAD')}
               <br />
-              {CONFIG.PATHOS_QUOTE_BODY}
+              {pathosConfig('PATHOS_QUOTE_BODY')}
             </p>
           </div>
         </aside>
@@ -112,7 +119,7 @@ const LayoutIndex = props => {
 
       <section aria-labelledby='latest-posts'>
         <SectionTitle id='latest-posts' icon='✍️'>
-          最新文章
+          {pathosConfig('PATHOS_LATEST_TITLE')}
         </SectionTitle>
         <PostTable posts={posts} />
       </section>
@@ -122,13 +129,13 @@ const LayoutIndex = props => {
       <section aria-labelledby='about-pathos'>
         <aside className='pathos-callout' data-tone='info'>
           <h2 id='about-pathos' className='pathos-callout-title'>
-            关于这个站点
+            {pathosConfig('PATHOS_ABOUT_TITLE')}
           </h2>
           <div className='pathos-callout-content'>
             <p>
-              {CONFIG.PATHOS_ABOUT_LEAD}
+              {pathosConfig('PATHOS_ABOUT_LEAD')}
               <br />
-              {CONFIG.PATHOS_ABOUT_BODY}
+              {pathosConfig('PATHOS_ABOUT_BODY')}
             </p>
           </div>
         </aside>
@@ -137,16 +144,13 @@ const LayoutIndex = props => {
       <section aria-labelledby='contact-pathos'>
         <aside className='pathos-callout' data-tone='tip'>
           <h2 id='contact-pathos' className='pathos-callout-title'>
-            联系我
+            {pathosConfig('PATHOS_CONTACT_TITLE')}
           </h2>
           <div className='pathos-callout-content'>
             <p>
-              有想聊的可以邮箱找我：
-              <a
-                className='pathos-content-link'
-                href={`mailto:${CONFIG.PATHOS_EMAIL}`}
-              >
-                {CONFIG.PATHOS_EMAIL}
+              {pathosConfig('PATHOS_CONTACT_LEAD')}
+              <a className='pathos-content-link' href={`mailto:${email}`}>
+                {email}
               </a>
             </p>
           </div>

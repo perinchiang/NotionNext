@@ -120,14 +120,15 @@ const Style = () => (
     }
 
     #theme-pathos .pathos-navbar-inner {
-      padding: 0 32px;
+      padding: 0 20px 0 32px;
     }
 
     #theme-pathos .pathos-brand {
-      color: var(--pathos-link);
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 24px;
+      margin: 15px;
+      color: var(--pathos-heading-red);
+      font-size: 25.888px;
+      font-weight: 700;
+      line-height: 1;
       letter-spacing: normal;
     }
 
@@ -553,19 +554,39 @@ const Style = () => (
 
     #theme-pathos #article-wrapper .code-toolbar {
       width: 100%;
-      margin: 0 0 16px;
+      margin: 0;
     }
 
     #theme-pathos #article-wrapper .pre-mac,
-    #theme-pathos #article-wrapper .code-toolbar > .toolbar {
+    #theme-pathos #article-wrapper .code-toolbar > .toolbar,
+    #theme-pathos #article-wrapper .collapse-header-row {
       display: none !important;
+    }
+
+    #theme-pathos #article-wrapper .collapse-wrapper {
+      width: 100%;
+      margin: 0 0 16px;
+      padding: 0 !important;
+    }
+
+    #theme-pathos #article-wrapper .collapse-panel-wrapper,
+    #theme-pathos #article-wrapper .collapse-panel {
+      width: 100%;
+      max-height: none !important;
+      overflow: visible !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+      transition: none !important;
     }
 
     #theme-pathos #article-wrapper pre,
     #theme-pathos #article-wrapper .notion-code,
     #theme-pathos #article-wrapper .code-toolbar > pre {
       width: 100%;
-      margin: 0 !important;
+      margin: 9px 0 !important;
       padding: 12px 16px !important;
       overflow-x: auto;
       border: 0 !important;
@@ -581,10 +602,15 @@ const Style = () => (
     #theme-pathos #article-wrapper pre code,
     #theme-pathos #article-wrapper .notion-code code {
       padding: 0 !important;
-      color: inherit;
+      color: var(--pathos-code) !important;
       background: transparent !important;
-      font: inherit;
-      line-height: inherit;
+      font-family:
+        ui-monospace, SFMono-Regular, 'Cascadia Mono', 'Roboto Mono',
+        'DejaVu Sans Mono', 'Liberation Mono', Menlo, Monaco, Consolas,
+        'Source Code Pro', monospace !important;
+      font-size: 15.75px !important;
+      font-weight: 400;
+      line-height: 20.475px !important;
     }
 
     #theme-pathos #article-wrapper .notion-list {
@@ -673,6 +699,10 @@ const Style = () => (
     }
 
     @media (max-width: 800px) {
+      #theme-pathos .pathos-brand {
+        font-size: 18px;
+      }
+
       #theme-pathos .pathos-article {
         padding-top: 167px;
       }
