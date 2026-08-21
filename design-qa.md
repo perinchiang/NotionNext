@@ -1,46 +1,35 @@
 # Pathos theme design QA
 
-## Reference and implementation
+## Source lineage
 
-- Reference URL: `https://pathos.site/`
-- Local implementation URL: `http://localhost:3100/?theme=pathos&mode=dark`
-- Desktop viewport: `1440 × 1000`
-- Mobile viewport: `390 × 844`
-- Reference screenshots:
-  - `outputs/source-desktop-top.png`
-  - `outputs/source-mobile-top.png`
-- Implementation screenshots:
-  - `outputs/implementation-desktop-dark.png`
-  - `outputs/implementation-desktop-light.png`
-  - `outputs/implementation-mobile-dark.png`
-  - `outputs/implementation-mobile-light.png`
-  - `outputs/implementation-article-mobile-light.png`
-- Side-by-side comparison inputs:
-  - `outputs/comparison-desktop-dark.png`
-  - `outputs/comparison-mobile-dark.png`
+- Live reference: `https://pathos.site/`
+- Layout source: `https://github.com/oleeskild/digitalgarden`
+- Obsidian theme source: `https://github.com/insanum/obsidian_nord`
+- Theme release: Obsidian Nord `0.2.0`
+- The live `_theme.5d7ff7d4.css` hash was reproduced from the Obsidian Nord source blob at commit `7afae8c1898ec6ef1978bc87c251a92e3738bd83`.
+- Third-party notices: `docs/pathos-third-party-licenses.md`
 
-## Scope and states checked
+## Browser QA
 
-- Digital Garden dark-state visual match: header, 700px reading column, greeting, quote card, dividers, latest-post table, compact row density, and mobile wrapping.
-- Added Nord-inspired light state using the same spacing and component structure.
-- Desktop and mobile theme toggle updates the document theme class.
-- Latest-post table links navigate to a rendered Notion article.
-- Article layout, Notion content, metadata, mail link, home link, and back-to-top control render in the Pathos palette.
-- Reduced-motion handling and semantic section/table markup are present.
+- Local route: `http://localhost:3100/?theme=pathos`
+- Desktop viewport checked: `1280 × 720`
+- Mobile viewport checked: `390 × 844`
+- Reference captures: `outputs/source-desktop-top.png` and `outputs/source-mobile-top.png`
 
-## Comparison findings and fixes
+Verified states:
 
-1. Fixed header alignment drift by removing the centered header max-width and matching the reference's 48px desktop/mobile brand offset.
-2. Fixed desktop table density by reducing cell padding and line height to match the compact Digital Garden rows.
-3. Fixed copy and table labels to match the reference: two-line quote structure plus `标题` and `日期` headers.
-4. Fixed mobile greeting rhythm by matching the reference's two-line break at `Hi, Welcome to / my blog!`.
-5. Replaced reference emoji decorations with the project's existing Font Awesome icon asset library; icon meaning, color, alignment, and hierarchy are preserved without introducing synthetic artwork.
-6. Added a daylight palette with verified readable contrast and no layout shift between modes.
+- Digital Garden structure: fixed flat navbar, 700px reading column, 180/190px opening rhythm, greeting, callouts, dividers, compact latest-post table, and mobile wrapping.
+- Obsidian Nord dark palette: canvas `#2e3440`, navbar `#3b4252`, text `#eceff4`, link `#d08770`, plus source table striping and heading hierarchy.
+- Light palette: the source Nord light surfaces with contrast-safe yellow, green, purple, and link foreground adaptations.
+- Theme toggle works on home and article pages without layout shift.
+- Mobile home has no horizontal overflow; the greeting emoji aligns with the first title line; the table keeps 32px side margins.
+- Notion article text inherits the active palette. Dark H2/H3 resolve to `rgb(235, 203, 139)` and `rgb(163, 190, 140)`; light H2/H3 resolve to `rgb(116, 90, 32)` and `rgb(84, 113, 63)`.
+- Browser console error count: zero.
 
-## Remaining differences
+## Remaining deployment check
 
-- Article titles and dates are dynamic Notion content, so local QA used the public sample database. The Vercel Preview pass must use Pat's six restored posts.
-- NotionNext's global development theme switcher appears at the lower-left in local screenshots. It is outside the Pathos theme layout and does not affect the header day/night control.
+- Local QA uses NotionNext's public sample database. The Vercel Preview pass must confirm Pat's six restored posts and open one real Notion article.
+- NotionNext's development-only theme switcher can appear at the lower-left locally. It is outside the Pathos layout and does not replace the navbar day/night control.
 
 ## Severity summary
 
@@ -49,4 +38,4 @@
 - P2: 0
 - P3: 0
 
-final result: passed
+final result: local pass

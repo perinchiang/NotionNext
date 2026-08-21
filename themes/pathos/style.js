@@ -2,52 +2,93 @@
 import { themeConsoleStyle } from '@/lib/themeConsoleStyle'
 import CONFIG from './config'
 
+/**
+ * NotionNext adaptation of the Digital Garden layout and Obsidian Nord 0.2.0.
+ * Source: https://github.com/oleeskild/digitalgarden
+ * Theme: https://github.com/insanum/obsidian_nord
+ */
 const Style = () => (
   <style jsx global>{`
     html,
     body,
     #theme-pathos {
-      background: #eceff4;
+      background: #ffffff;
     }
 
     #theme-pathos {
-      --pathos-canvas: #eceff4;
-      --pathos-header: rgba(229, 233, 240, 0.94);
-      --pathos-panel: #e5e9f0;
-      --pathos-panel-soft: #f4f6f8;
-      --pathos-text: #2e3440;
-      --pathos-muted: #5e6878;
-      --pathos-border: #cbd2dc;
-      --pathos-red: #a24f5a;
-      --pathos-gold: #85651f;
-      --pathos-blue: #39798d;
+      --nord0: #2e3440;
+      --nord1: #3b4252;
+      --nord2: #434c5e;
+      --nord3: #4c566a;
+      --nord4: #d8dee9;
+      --nord5: #e5e9f0;
+      --nord6: #eceff4;
+      --nord7: #8fbcbb;
+      --nord8: #88c0d0;
+      --nord9: #81a1c1;
+      --nord10: #5e81ac;
+      --nord11: #bf616a;
+      --nord12: #d08770;
+      --nord13: #ebcb8b;
+      --nord14: #a3be8c;
+      --nord15: #b48ead;
+
+      --pathos-canvas: #ffffff;
+      --pathos-header: var(--nord6);
+      --pathos-panel: var(--nord6);
+      --pathos-panel-alt: var(--nord5);
+      --pathos-text: var(--nord2);
+      --pathos-muted: var(--nord1);
+      --pathos-faint: var(--nord0);
+      --pathos-border: var(--nord5);
+      --pathos-heading-red: var(--nord11);
+      --pathos-heading-yellow: #745a20;
+      --pathos-heading-green: #54713f;
+      --pathos-heading-purple: #765d72;
+      --pathos-link: #9a4e3e;
+      --pathos-link-hover: var(--nord10);
+      --pathos-code: var(--nord8);
+      --pathos-code-background: var(--nord6);
+      --pathos-table-head: rgba(236, 239, 244, 0.2);
+      --pathos-table-even: rgba(236, 239, 244, 0.4);
+      --pathos-table-odd: rgba(236, 239, 244, 0.8);
+      --pathos-table-hover: var(--nord9);
       min-height: 100vh;
-      color: var(--pathos-text);
+      color: var(--pathos-text) !important;
       background: var(--pathos-canvas);
       font-family:
         -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
         'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-      font-size: 16px;
-      line-height: 1.65;
-      letter-spacing: 0.005em;
+      font-size: 18px;
+      line-height: 1.5;
     }
 
     .dark body,
     .dark #theme-pathos {
-      background: #2e3440;
+      background: var(--nord0);
     }
 
     .dark #theme-pathos {
-      --pathos-canvas: #2e3440;
-      --pathos-header: rgba(59, 66, 82, 0.95);
-      --pathos-panel: #3b4252;
-      --pathos-panel-soft: #343b49;
-      --pathos-text: #eceff4;
-      --pathos-muted: #b6bfce;
-      --pathos-border: #4c566a;
-      --pathos-red: #bf616a;
-      --pathos-gold: #ebcb8b;
-      --pathos-blue: #88c0d0;
+      --pathos-canvas: var(--nord0);
+      --pathos-header: var(--nord1);
+      --pathos-panel: var(--nord1);
+      --pathos-panel-alt: var(--nord2);
+      --pathos-text: var(--nord6);
+      --pathos-muted: var(--nord5);
+      --pathos-faint: var(--nord4);
+      --pathos-border: var(--nord2);
+      --pathos-heading-red: var(--nord11);
+      --pathos-heading-yellow: var(--nord13);
+      --pathos-heading-green: var(--nord14);
+      --pathos-heading-purple: var(--nord15);
+      --pathos-link: var(--nord12);
+      --pathos-link-hover: var(--nord9);
+      --pathos-code: var(--nord8);
+      --pathos-code-background: var(--nord1);
+      --pathos-table-head: hsl(220, 16%, 16%);
+      --pathos-table-even: hsl(220, 16%, 20%);
+      --pathos-table-odd: hsl(220, 16%, 24%);
+      --pathos-table-hover: var(--nord3);
     }
 
     #theme-pathos a {
@@ -55,29 +96,33 @@ const Style = () => (
     }
 
     #theme-pathos ::selection {
-      color: #2e3440;
-      background: #ebcb8b;
+      color: var(--nord0);
+      background: rgba(191, 97, 106, 0.6);
     }
 
     #theme-pathos .pathos-header {
       background: var(--pathos-header);
-      border-bottom: 1px solid
-        color-mix(in srgb, var(--pathos-border) 65%, transparent);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
     }
 
     #theme-pathos .pathos-brand,
     #theme-pathos .pathos-accent-red {
-      color: var(--pathos-red);
+      color: var(--pathos-heading-red);
     }
 
     #theme-pathos .pathos-accent-gold {
-      color: var(--pathos-gold);
+      color: var(--pathos-heading-yellow);
     }
 
-    #theme-pathos .pathos-accent-blue {
-      color: var(--pathos-blue);
+    #theme-pathos .pathos-accent-green {
+      color: var(--pathos-heading-green);
+    }
+
+    #theme-pathos .pathos-accent-purple {
+      color: var(--pathos-heading-purple);
+    }
+
+    #theme-pathos .pathos-accent-link {
+      color: var(--pathos-link);
     }
 
     #theme-pathos .pathos-muted {
@@ -94,22 +139,57 @@ const Style = () => (
       border-color: var(--pathos-border);
     }
 
+    #theme-pathos .pathos-callout {
+      --pathos-callout-color: 158, 158, 158;
+      overflow: hidden;
+      margin: 1em 0;
+      padding: 12px 12px 12px 24px;
+      border: 0;
+      border-radius: 4px;
+      background: rgba(var(--pathos-callout-color), 0.1);
+    }
+
+    #theme-pathos .pathos-callout[data-tone='info'] {
+      --pathos-callout-color: 0, 184, 212;
+    }
+
+    #theme-pathos .pathos-callout[data-tone='tip'] {
+      --pathos-callout-color: 0, 191, 165;
+    }
+
+    #theme-pathos .pathos-callout-title {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: rgb(var(--pathos-callout-color));
+      font-size: 0.92rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    #theme-pathos .pathos-callout-content {
+      margin-top: 0.7rem;
+    }
+
+    #theme-pathos .pathos-callout-content p + p {
+      margin-top: 0.2rem;
+    }
+
     #theme-pathos .pathos-table {
-      border-collapse: collapse;
-      table-layout: fixed;
       width: 100%;
       overflow: hidden;
-      border: 1px solid var(--pathos-border);
-      border-radius: 4px;
+      border: 1px solid var(--pathos-panel);
+      border-collapse: collapse;
+      table-layout: fixed;
     }
 
     #theme-pathos .pathos-table th,
     #theme-pathos .pathos-table td {
-      padding: 0.36rem 0.55rem;
-      line-height: 1.35;
+      padding: 0.27rem 0.48rem;
+      line-height: 1.25;
       vertical-align: top;
-      border-right: 1px solid var(--pathos-border);
-      border-bottom: 1px solid var(--pathos-border);
+      border-right: 1px solid var(--pathos-panel);
+      border-bottom: 1px solid var(--pathos-panel);
       overflow-wrap: anywhere;
     }
 
@@ -122,34 +202,33 @@ const Style = () => (
       border-bottom: 0;
     }
 
-    #theme-pathos .pathos-table thead,
+    #theme-pathos .pathos-table thead {
+      background: var(--pathos-table-head);
+    }
+
     #theme-pathos .pathos-table tbody tr:nth-child(even) {
-      background: var(--pathos-panel);
+      background: var(--pathos-table-even);
     }
 
     #theme-pathos .pathos-table tbody tr:nth-child(odd) {
-      background: var(--pathos-panel-soft);
-    }
-
-    #theme-pathos .pathos-table tbody tr {
-      transition: background-color 160ms ease;
+      background: var(--pathos-table-odd);
     }
 
     #theme-pathos .pathos-table tbody tr:hover {
-      background: color-mix(
-        in srgb,
-        var(--pathos-blue) 14%,
-        var(--pathos-panel)
-      );
+      background: var(--pathos-table-hover);
     }
 
-    #theme-pathos .pathos-table a {
-      color: var(--pathos-blue);
+    #theme-pathos .pathos-table a,
+    #theme-pathos .pathos-content-link {
+      color: var(--pathos-link);
+      font-weight: 600;
       text-decoration: none;
       text-underline-offset: 0.2em;
     }
 
-    #theme-pathos .pathos-table a:hover {
+    #theme-pathos .pathos-table a:hover,
+    #theme-pathos .pathos-content-link:hover {
+      color: var(--pathos-link-hover);
       text-decoration: underline;
     }
 
@@ -157,30 +236,87 @@ const Style = () => (
       color: var(--pathos-muted);
     }
 
-    #theme-pathos .pathos-mode-button:hover {
-      color: var(--pathos-red);
+    #theme-pathos .pathos-mode-button:hover,
+    #theme-pathos .pathos-mode-button:focus-visible {
+      color: var(--pathos-heading-red);
+    }
+
+    #theme-pathos a:focus-visible,
+    #theme-pathos button:focus-visible {
+      outline: 2px solid var(--nord9);
+      outline-offset: 3px;
     }
 
     #theme-pathos #article-wrapper #notion-article {
       color: var(--pathos-text);
-      font-size: 1.02rem;
-      line-height: 1.82;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    #theme-pathos #article-wrapper #notion-article .notion,
+    #theme-pathos #article-wrapper #notion-article .notion-page,
+    #theme-pathos #article-wrapper #notion-article .notion-page-content,
+    #theme-pathos #article-wrapper #notion-article .notion-text {
+      color: var(--pathos-text) !important;
+      background: transparent;
     }
 
     #theme-pathos #article-wrapper #notion-article a {
-      color: var(--pathos-blue);
-      text-decoration-color: color-mix(
-        in srgb,
-        var(--pathos-blue) 55%,
-        transparent
-      );
+      color: var(--pathos-link);
+      text-decoration: none;
       text-underline-offset: 0.2em;
     }
 
+    #theme-pathos #article-wrapper #notion-article a:hover {
+      color: var(--pathos-link-hover);
+      text-decoration: underline;
+    }
+
+    #theme-pathos #article-wrapper h1 {
+      color: var(--pathos-heading-red) !important;
+    }
+
+    #theme-pathos #article-wrapper h2 {
+      color: var(--pathos-heading-yellow) !important;
+    }
+
+    #theme-pathos #article-wrapper h3 {
+      color: var(--pathos-heading-green) !important;
+    }
+
+    #theme-pathos #article-wrapper h4 {
+      color: var(--pathos-heading-purple) !important;
+    }
+
+    #theme-pathos #article-wrapper h5 {
+      color: var(--nord7) !important;
+    }
+
+    #theme-pathos #article-wrapper h6 {
+      color: var(--nord9) !important;
+    }
+
+    #theme-pathos #article-wrapper h1,
+    #theme-pathos #article-wrapper h2,
+    #theme-pathos #article-wrapper h3,
+    #theme-pathos #article-wrapper h4,
+    #theme-pathos #article-wrapper h5,
+    #theme-pathos #article-wrapper h6 {
+      letter-spacing: -0.015em;
+    }
+
     #theme-pathos #article-wrapper .notion-quote,
+    #theme-pathos #article-wrapper blockquote {
+      margin: 1.5em 0;
+      padding: 0.5em 0.85em;
+      border-left: 10px solid #c1dbe3;
+      background: rgba(255, 255, 255, 0.09);
+    }
+
     #theme-pathos #article-wrapper .notion-callout {
+      border: 0;
+      border-radius: 4px;
       background: var(--pathos-panel);
-      border-color: var(--pathos-border);
     }
 
     #theme-pathos #article-wrapper .notion-bookmark {
@@ -189,20 +325,46 @@ const Style = () => (
 
     #theme-pathos #article-wrapper pre,
     #theme-pathos #article-wrapper code {
-      background: var(--pathos-panel);
+      color: var(--pathos-code);
+      background: var(--pathos-code-background);
     }
 
-    #theme-pathos #article-wrapper h1,
-    #theme-pathos #article-wrapper h2,
-    #theme-pathos #article-wrapper h3 {
-      color: var(--pathos-gold);
-      letter-spacing: -0.015em;
+    #theme-pathos #article-wrapper mark {
+      color: var(--nord0);
+      background: var(--nord13);
+    }
+
+    #theme-pathos #article-wrapper table {
+      width: 100%;
+      border: 1px solid var(--pathos-panel);
+      border-collapse: collapse;
+    }
+
+    #theme-pathos #article-wrapper th,
+    #theme-pathos #article-wrapper td {
+      border: 1px solid var(--pathos-panel);
+    }
+
+    #theme-pathos #article-wrapper thead {
+      background: var(--pathos-table-head);
+    }
+
+    #theme-pathos #article-wrapper tbody tr:nth-child(even) {
+      background: var(--pathos-table-even);
+    }
+
+    #theme-pathos #article-wrapper tbody tr:nth-child(odd) {
+      background: var(--pathos-table-odd);
+    }
+
+    #theme-pathos #article-wrapper tbody tr:hover {
+      background: var(--pathos-table-hover);
     }
 
     @media (max-width: 640px) {
       #theme-pathos .pathos-table th,
       #theme-pathos .pathos-table td {
-        padding: 0.42rem 0.5rem;
+        padding: 0.35rem 0.42rem;
         font-size: 0.84rem;
       }
     }
