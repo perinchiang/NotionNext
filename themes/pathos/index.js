@@ -1,7 +1,5 @@
-import Comment from '@/components/Comment'
 import DarkModeButton from '@/components/DarkModeButton'
 import NotionPage from '@/components/NotionPage'
-import ShareBar from '@/components/ShareBar'
 import SmartLink from '@/components/SmartLink'
 import { siteConfig } from '@/lib/config'
 import { isBrowser } from '@/lib/utils'
@@ -222,33 +220,10 @@ const LayoutSlug = props => {
   if (!post) return null
 
   return (
-    <article className='pathos-article pb-16'>
-      <header className='pathos-divider mb-10 border-b pb-7'>
-        <h1 className='pathos-accent-red text-3xl font-semibold leading-tight tracking-tight sm:text-4xl'>
-          {post.title}
-        </h1>
-        <div className='pathos-muted mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm'>
-          {getPostDate(post) && <time>{getPostDate(post)}</time>}
-          {post.category && <span>{post.category}</span>}
-        </div>
-      </header>
+    <article className='pathos-article'>
+      <h1 className='pathos-article-title'>{post.title}</h1>
       <div id='article-wrapper'>
         <NotionPage post={post} />
-      </div>
-      <div className='pathos-divider mt-10 border-t pt-6'>
-        <ShareBar post={post} />
-        <Comment frontMatter={post} />
-        <div className='mt-6 flex justify-between text-sm'>
-          <SmartLink className='pathos-content-link' href='/'>
-            ← 返回首页
-          </SmartLink>
-          <button
-            className='pathos-content-link'
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          >
-            ↑ 回到顶部
-          </button>
-        </div>
       </div>
     </article>
   )
