@@ -1,1 +1,32 @@
-™ë,j¢Ñhºw]¡Ë¦z{Z¶*'º¹a¶Úlÿ÷hrÈ"¶›r‰¿­ë-ş·©¢ÏÜ¢{^Û zÚŞ¦‹"¶Šòr‰íz{lµ«n³8
+name: Auto Set Notion Cover
+
+on:
+  schedule:
+    # æ¯å¤©å›½é™…æ ‡å‡†æ—¶é—´ 0ç‚¹ (åŒ—äº¬æ—¶é—´ 8ç‚¹) è¿è¡Œä¸€æ¬¡
+    - cron: '0 0 * * *' 
+  workflow_dispatch: # å…è®¸æ‰‹åŠ¨ç‚¹å‡»æŒ‰é’®è¿è¡Œ
+
+jobs:
+  update-cover:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          # å¼ºåˆ¶ç¡®ä¿å®‰è£… notion-clientï¼Œé˜²æ­¢ requirements.txt ç¼ºå¤±
+          pip install notion-client
+
+      - name: Run script
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+        run: python scripts/update_cover.py
