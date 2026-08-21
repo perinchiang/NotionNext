@@ -48,6 +48,8 @@ const Style = () => (
       --pathos-link: #9a4e3e;
       --pathos-link-hover: var(--nord10);
       --pathos-code: var(--nord8);
+      --pathos-inline-code: #4c6e9a;
+      --pathos-rule: var(--nord9);
       --pathos-code-background: var(--nord6);
       --pathos-code-block-background: var(--nord1);
       --pathos-code-block-text: #f8f8f2;
@@ -96,6 +98,8 @@ const Style = () => (
       --pathos-link: var(--nord12);
       --pathos-link-hover: var(--nord9);
       --pathos-code: var(--nord8);
+      --pathos-inline-code: var(--nord8);
+      --pathos-rule: var(--nord3);
       --pathos-code-background: var(--nord1);
       --pathos-code-block-background: var(--nord1);
       --pathos-code-block-text: #f8f8f2;
@@ -213,7 +217,7 @@ const Style = () => (
       height: 2px;
       margin: 32px 0;
       border: 0;
-      border-top: 2px solid var(--pathos-border);
+      border-top: 2px solid var(--pathos-rule);
     }
 
     #theme-pathos .pathos-callout {
@@ -420,6 +424,11 @@ const Style = () => (
       text-underline-offset: 0.2em;
     }
 
+    #theme-pathos #article-wrapper #notion-article .notion-link {
+      opacity: 1;
+      border-color: var(--pathos-link);
+    }
+
     #theme-pathos #article-wrapper #notion-article a:hover {
       color: var(--pathos-link-hover);
       text-decoration: underline;
@@ -539,7 +548,7 @@ const Style = () => (
 
     #theme-pathos #article-wrapper .notion-inline-code,
     #theme-pathos #article-wrapper :not(pre) > code {
-      color: var(--pathos-code);
+      color: var(--pathos-inline-code);
       background: var(--pathos-code-background);
       padding: 0.15em 0.3em;
       border: 0;
@@ -697,11 +706,12 @@ const Style = () => (
       border-radius: 0;
     }
 
-    #theme-pathos #article-wrapper hr {
-      height: 2px;
+    #theme-pathos #article-wrapper hr,
+    #theme-pathos #article-wrapper .notion-hr {
+      height: 0;
       margin: 16px 0 32px;
-      border: 0;
-      border-top: 2px solid var(--pathos-border);
+      border: 0 !important;
+      border-top: 2px solid var(--pathos-rule) !important;
     }
 
     @media (max-width: 800px) {
